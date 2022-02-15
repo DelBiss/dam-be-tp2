@@ -45,7 +45,7 @@ body {
 
 .card {
   /* min-width: 350px; */
-  max-width: 500px;
+  /* max-width: 500px; */
   flex:1 0 0px;
   box-sizing: border-box;
   
