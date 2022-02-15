@@ -10,7 +10,7 @@ import {getCF} from '../../console_formating';
 import * as Colors from 'colors/safe';
 
 const mongourl = process.env.MONGO_CONNECTION_STRING || 'mongodb://root:example@localhost:27017/';
-const db_name = process.env.DB_NAME || 'tp1';
+const db_name = process.env.DB_NAME || 'tp2';
 const collection_name = 'weathers';
  
 const consoleMongo = getCF('MongoDB');

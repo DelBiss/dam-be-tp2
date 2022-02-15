@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config();
 import 'reflect-metadata';
 import { container } from './inversify.config';
 import { Server } from './server';
