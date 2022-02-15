@@ -1,7 +1,7 @@
 
 <div class="top-b">
     <div class="hourly" *ngFor="let hour of data.hourly">
-        <div class="hour">{{hour.time}}</div>
+        <div class="hour">{{hour.time | military}}</div>
         <wc-current class="weather" [data]="hour" [isRow]="true"></wc-current>
     </div>
 </div>

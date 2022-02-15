@@ -12,6 +12,7 @@ import { CardComponent as WCardComponent } from './weather/card/card.component';
 import { CurrentWeaterComponent } from './weather/card/current-weater/current-weater.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { ObservationComponent } from './weather/card/observation/observation.component';
+import { MilitaryTimePipe } from './military-time.pipe';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ObservationComponent } from './weather/card/observation/observation.com
     CurrentWeaterComponent,
     NavigationComponent,
     ObservationComponent,
+    MilitaryTimePipe,
   ],
   imports: [
     BrowserModule,

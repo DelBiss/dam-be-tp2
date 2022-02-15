@@ -15,7 +15,9 @@
 .hour {
     font-size: 1.5em;
     border-right-style: solid;
-    padding-right: 0.5em
+    padding-right: 0.5em;
+    width: 70px;
+    text-align: right;
 
 }
 
