@@ -64,7 +64,7 @@ function consolef(message:string,_theme:consoleThemeName,_font?:fontType){
         outString = colorFct(outString);
     }
     
-    // console.log(outString);
+    console.log(outString);
 }
 
 export function getCF(_theme:consoleThemeName){
