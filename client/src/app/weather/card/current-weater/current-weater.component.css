@@ -18,24 +18,10 @@
   .wrow{
     font-size: 1em;
     grid-template-areas: "temp feel icon desc";
-    grid-auto-columns: 90px;
+    grid-auto-columns: 100px;
   }
-  .block{
-    /* display: flex; */
-    display: grid;
-    /* flex-direction: column; */
-    align-items: center;
-    justify-content: space-evenly;
-    /* width: 100%; */
-    grid-template-areas: "temp icon" "feel desc";
-    grid-auto-columns: 90px;
-  }
+ 
 
-  .wrow .block{
-    /* flex-direction: row; */
-    grid-template-areas: "temp feel icon desc";
-    gap: 1em;
-  }
 
   .wrow .labeled-data{
     flex-direction: column;

@@ -9,7 +9,7 @@
     </div>
     
     <wc-current *ngIf="view=='now'" [data]="data.current_condition"></wc-current>
-    <wc-observation *ngIf="view=='days'" [data]="data.weather[0]"></wc-observation>
+    <wc-observation *ngIf="view=='hours'" [data]="data.weather[0]"></wc-observation>
     <div class="observation-time">
         <div class="labeled-data top-b">
             <div class="">Dernière observation</div>

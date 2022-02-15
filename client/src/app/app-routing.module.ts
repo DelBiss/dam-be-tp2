@@ -14,7 +14,7 @@ const routes: Routes = [
   
   {path:'weather', redirectTo:'weather/now'},
   {path:'weather/now', component: WeatherComponent, data: {view: 'now'}, canActivate: [AuthGuard]},
-  {path:'weather/days', component: WeatherComponent, data: {view: 'days'}, canActivate: [AuthGuard]},
+  {path:'weather/hours', component: WeatherComponent, data: {view: 'hours'}, canActivate: [AuthGuard]},
 
   //Route pour la page d'authentification
   {path:'auth', component: AuthComponent },
