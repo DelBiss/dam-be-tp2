@@ -7,18 +7,20 @@ import { WeatherComponent } from './weather/weather.component';
 
 const routes: Routes = [
   //On redirige / vers /weather
-  {path:'',pathMatch:'full', redirectTo:'weather'},
+  {path:'',pathMatch:'full', redirectTo:'weather/now'},
 
   //canActivate: [AuthGuard] permet de bloquer 
   //une route si l'utilisateur n'est pas login
-  //TODO vous pouvez retirer temporairement le guard pour développer
-  {path:'weather', component: WeatherComponent/* , canActivate: [AuthGuard] */},
+  
+  {path:'weather', redirectTo:'weather/now'},
+  {path:'weather/now', component: WeatherComponent, data: {view: 'now'}, canActivate: [AuthGuard]},
+  {path:'weather/days', component: WeatherComponent, data: {view: 'days'}, canActivate: [AuthGuard]},
 
   //Route pour la page d'authentification
   {path:'auth', component: AuthComponent },
 
 
-  //TODO Ajouter les autres routes au besoin
+  
 ];
 
 @NgModule({

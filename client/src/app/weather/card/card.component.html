@@ -1,0 +1,19 @@
+<div class="card">
+    <div class="area">
+        <div class="area-name">
+            {{data.observation.areaName}}
+        </div>
+        <div class="area-region">
+            {{data.observation.region}} , {{data.observation.country}}
+        </div>
+    </div>
+    
+    <wc-current *ngIf="view=='now'" [data]="data.current_condition"></wc-current>
+    <wc-observation *ngIf="view=='days'" [data]="data.weather[0]"></wc-observation>
+    <div class="observation-time">
+        <div class="labeled-data top-b">
+            <div class="">Dernière observation</div>
+            <div class="">{{data.observation.localObsDateTime}} (heure&nbsp;locale)</div>
+        </div>
+    </div>
+</div>

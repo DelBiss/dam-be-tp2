@@ -1,0 +1,32 @@
+
+
+<div  class="weather_info" [ngClass]="row_column_class">
+    
+        <div class="block" >
+            <div class="temp-c">
+                {{data.temp_C}}℃
+            </div>
+            <div class="labeled-data feel" >
+                <div>
+                    T.&nbsp;ressentie:
+                </div>
+                <div>
+                    {{data.FeelsLikeC}}
+                </div>
+            </div>
+        </div>
+    
+    
+    
+        <div class="block" >
+            <div class="icon-box">
+                <img class="icon img-shadow" src="assets/img/condition/style1/{{data.weatherIconUrl}}.png" alt="" srcset="">
+            </div>
+            <div class="weather-desc">
+                    {{data.weatherDesc}}
+            </div>
+        </div>
+    
+</div>          
+                  
+                  

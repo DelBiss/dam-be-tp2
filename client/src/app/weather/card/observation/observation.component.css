@@ -1,0 +1,24 @@
+:host{
+    /* grid-column: 1/3; */
+   
+    justify-content: center;
+    
+    width: 100%;
+}
+
+.hourly {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.hour {
+    font-size: 1.5em;
+    border-right-style: solid;
+    padding-right: 0.5em
+
+}
+
+.weather {
+    padding-inline: 0.5em;
+}

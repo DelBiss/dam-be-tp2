@@ -1,12 +1,16 @@
-<p>Vous devez vous connecter!</p>
-<form #authForm="ngForm">
-    <div>
-        <input name="username" type="text" placeholder="Nom utilisateur" required ngModel>
+<div class="hero">
+    <div class="card">
+        <p>Vous devez vous connecter!</p>
+        <form #authForm="ngForm">
+            <div>
+                <input name="username" type="text" placeholder="Nom utilisateur" required ngModel>
+            </div>
+            <br>
+            <div>
+                <input name="password" type="password" placeholder="Mot de passe" required ngModel>
+            </div>
+            <br>
+            <button (click)="login(authForm)" [disabled]="!authForm.valid">Se connecter</button> | <button [disabled]="!authForm.valid" (click)="signup(authForm)">S'inscrire </button>
+        </form>
     </div>
-    <br>
-    <div>
-        <input name="password" type="password" placeholder="Mot de passe" required ngModel>
-    </div>
-    <br>
-    <button (click)="login(authForm)" [disabled]="!authForm.valid">Se connecter</button> | <button [disabled]="!authForm.valid" (click)="signup(authForm)">S'inscrire </button>
-</form>
+</div>

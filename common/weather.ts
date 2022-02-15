@@ -1,9 +1,6 @@
 //Objet réponse de Wttr.in 
-export interface WeatherDesc {
-    value: string;
-}
 
-export interface WeatherIconUrl {
+export interface WeatherValue {
     value: string;
 }
 
@@ -24,38 +21,22 @@ export interface CurrentCondition {
     visibility: string;
     visibilityMiles: string;
     weatherCode: string;
-    weatherDesc: WeatherDesc[];
-    weatherIconUrl: WeatherIconUrl[];
+    weatherDesc: WeatherValue[];
+    weatherIconUrl: WeatherValue[];
     winddir16Point: string;
     winddirDegree: string;
     windspeedKmph: string;
     windspeedMiles: string;
 }
 
-export interface AreaName {
-    value: string;
-}
-
-export interface Country {
-    value: string;
-}
-
-export interface Region {
-    value: string;
-}
-
-export interface WeatherUrl {
-    value: string;
-}
-
 export interface NearestArea {
-    areaName: AreaName[];
-    country: Country[];
+    areaName: WeatherValue[];
+    country: WeatherValue[];
     latitude: string;
     longitude: string;
     population: string;
-    region: Region[];
-    weatherUrl: WeatherUrl[];
+    region: WeatherValue[];
+    weatherUrl: WeatherValue[];
 }
 
 export interface Request {
@@ -70,14 +51,6 @@ export interface Astronomy {
     moonset: string;
     sunrise: string;
     sunset: string;
-}
-
-export interface WeatherDesc2 {
-    value: string;
-}
-
-export interface WeatherIconUrl2 {
-    value: string;
 }
 
 export interface Hourly {
@@ -114,8 +87,8 @@ export interface Hourly {
     visibility: string;
     visibilityMiles: string;
     weatherCode: string;
-    weatherDesc: WeatherDesc2[];
-    weatherIconUrl: WeatherIconUrl2[];
+    weatherDesc: WeatherValue[];
+    weatherIconUrl: WeatherValue[];
     winddir16Point: string;
     winddirDegree: string;
     windspeedKmph: string;
@@ -144,3 +117,95 @@ export interface WttrObject {
     weather: Weather[];
 }
 
+export interface WttrCachedObject extends WttrObject{
+    _id: string,
+    cached_date: Date
+}
+
+export interface WttrResponse{
+    query : string,
+    data: WttrObject[]
+}
+export interface SimpleCondition {
+    FeelsLikeC: string;
+    temp_C: string;
+    weatherDesc: string;
+    weatherIconUrl: string;
+}
+
+export interface SimpleDailyCondition extends SimpleCondition{
+    time:string
+}
+export interface ObservationInfo{
+    areaName:string;
+    region: string;
+    country: string;
+    localObsDateTime: string;
+}
+
+export interface DailyCondition{
+    date:string;
+    avgtempC: string;
+    mintempC: string;
+    maxtempC: string;
+    hourly: SimpleDailyCondition[];
+}
+
+export interface SimpleWttrObject{
+    current_condition: SimpleCondition;
+    observation: ObservationInfo;
+    weather: DailyCondition[];
+}
+
+export function ConvertWttrArray(wttrs:WttrObject[]):SimpleWttrObject[]{
+    const returnObj:SimpleWttrObject[] = []
+
+    for (const wttr of wttrs) {
+        returnObj.push(ConvertToSimpleWttrObject(wttr))
+    }
+
+    return returnObj
+}
+export function ConvertToSimpleWttrObject(wttr:WttrObject):SimpleWttrObject{
+    const returnObj:SimpleWttrObject =  {
+        observation:  {
+            areaName:           wttr.nearest_area[0].areaName[0].value,
+            region:             wttr.nearest_area[0].region[0].value,
+            country:            wttr.nearest_area[0].country[0].value,
+            localObsDateTime:   wttr.current_condition[0].localObsDateTime
+        },
+        current_condition:  {
+            FeelsLikeC:     wttr.current_condition[0].FeelsLikeC,
+            temp_C:         wttr.current_condition[0].temp_C,
+            weatherDesc:    wttr.current_condition[0].weatherDesc[0].value,
+            weatherIconUrl: wttr.current_condition[0].weatherIconUrl[0].value
+            // weatherIconUrl: "wsymbol_0001_sunny"
+        },
+        weather:[]
+    }
+    
+    for (const wttrDaily of wttr.weather) {
+        const daily:DailyCondition = {
+            date:       wttrDaily.date,
+            avgtempC:   wttrDaily.avgtempC,
+            mintempC:   wttrDaily.mintempC,
+            maxtempC:   wttrDaily.maxtempC,
+            hourly:     []
+        }
+
+        for (const hourly of wttrDaily.hourly) {
+            daily.hourly.push(
+                {
+                    time:           hourly.time,
+                    FeelsLikeC:     hourly.FeelsLikeC,
+                    temp_C:         hourly.tempC,
+                    weatherDesc:    hourly.weatherDesc[0].value,
+                    weatherIconUrl: hourly.weatherIconUrl[0].value,
+                    // weatherIconUrl: "wsymbol_0001_sunny"
+                }
+            )
+        }
+        returnObj.weather.push(daily)
+    }
+    return returnObj
+}

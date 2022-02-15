@@ -1,0 +1,23 @@
+
+
+.observation-time{
+    /* grid-column: 1/3; */
+    font-size: 0.875em;
+    font-weight: 300;
+    justify-content: center;
+    width: 100%;
+}
+
+.area{
+    width: 100%;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.521);
+  }
+  .area > *{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
+  }
+  .area-name {
+    font-size: 2.5em;
+  }
